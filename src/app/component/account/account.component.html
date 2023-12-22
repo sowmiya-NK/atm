@@ -1,0 +1,27 @@
+<div class="form-container card">
+  <div>
+    <p style="color: rgb(38, 83, 24)">Welcome {{ AccountDetails.name }} !!!</p>
+
+    <p style="color: rgb(225, 123, 55)">
+      Current Balance {{ AccountDetails.balance }}
+    </p>
+  </div>
+
+  <form>
+    <label>Enter Your Amount:</label><br />
+    <input
+      class="mx-2 mt-2"
+      type="number"
+      [(ngModel)]="amount"
+      name="amount"
+      required
+    /><br />
+    <button type="submit" class="btn mx-2 my-4" (click)="credit()">
+      CREDIT
+    </button>
+    <button type="submit" class="btn mx-2 my-4" (click)="debit()">DEBIT</button>
+    <button class="btn" (click)="TransactionHistory()">
+      Transaction History
+    </button>
+  </form>
+</div>

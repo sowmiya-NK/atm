@@ -1,0 +1,20 @@
+<div class="form-container card">
+  <form>
+    <label class="mt-3">Enter PIN Number:</label><br>
+    <input
+      class="mx-2 mt-2"
+      type="password"
+      placeholder="****"
+      password
+      required
+      [(ngModel)]="pinnumber"
+      name="pinnumber"
+      pattern="[0-9]{4}$"
+      #ModelNumber="ngModel"
+      [ngClass]="ModelNumber.invalid && ModelNumber.dirty ? 'is-invalid' : ''"
+    />
+    <div *ngIf="ModelNumber.invalid" class="invalid-feedback">please enter 4 digit pin number</div>
+    <div style="color: red;">{{errorMessage}}</div>
+    <button type="submit" class="btn mx-2 my-4" (click)="submit()">submit</button>
+  </form>
+</div>
