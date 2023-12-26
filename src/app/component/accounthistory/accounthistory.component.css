@@ -1,4 +1,12 @@
-.table{
-    align-items: center;
-    margin-top: 40px;
+.table {
+  align-items: center;
+  margin-top: 40px;
+}
+
+.CREDIT {
+  background-color: rgb(154, 230, 154);
+}
+
+.DEBIT {
+  background-color: rgb(189, 116, 116);
 }

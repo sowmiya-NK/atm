@@ -11,11 +11,17 @@
         <th scope="col">Current Balance</th>
       </tr>
     </thead>
-    <tbody *ngFor="let h of history">
+    <tbody
+      *ngFor="let h of history"
+      [ngClass]="{
+        CREDIT: h.transactionalType.type === 'CREDIT',
+        DEBIT: h.transactionalType.type === 'DEBIT'
+      }"
+    >
       <tr>
         <td>{{ h.userId }}</td>
         <td>{{ h.name }}</td>
-        <td>{{ h.createdAt| date : "mediumDate" }}</td>
+        <td>{{ h.createdAt | date : "mediumDate" }}</td>
         <td>{{ h.amount }}</td>
         <td>{{ h.transactionalType.type }}</td>
         <td>{{ h.currentBalance }}</td>
