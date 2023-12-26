@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/models/account';
 import { StorageService } from 'src/app/services/storage.service';
@@ -10,30 +10,31 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./account.component.css'],
 })
 export class AccountComponent implements OnInit {
-  Object = Object;
+  
 
   AccountDetails: Account = {
     name: '',
     userId: 0,
     balance: 0,
-    amount:0
+    amount: 0,
   };
-  errorMessage:string='';
+  errorMessage: string = '';
   amount: number = 0;
 
   constructor(
     private userService: UserService,
     private storageService: StorageService,
-    private route: Router
+    private route: Router,
+ 
   ) {}
 
   ngOnInit(): void {
     const accountId = this.storageService.getAccount().userId;
-
     if (accountId !== undefined && accountId !== null) {
       this.userService.getAccountDetails(accountId).subscribe({
         next: (response: any) => {
           console.log('account', response);
+     
           this.AccountDetails = response;
         },
         error: (err) => console.log('error', err),
@@ -50,7 +51,10 @@ export class AccountComponent implements OnInit {
       .credit(this.amount, this.storageService.getAccount().userId, 1)
       .subscribe({
         next: (response: any) => {
-          console.log(response), this.ngOnInit();
+          console.log(response),
+          
+          this.ngOnInit();
+          
         },
         error: (err) => console.log('error', err),
         complete: () => console.log('completed'),
@@ -61,20 +65,26 @@ export class AccountComponent implements OnInit {
 
   debit() {
     console.log(this.amount);
+    const currentBalance = this.storageService.getAccount().amount;
+    console.log('c', currentBalance);
+
+    // if (this.amount <= currentBalance) {
+    console.log(currentBalance);
+
     this.userService
       .debit(this.amount, this.storageService.getAccount().userId, 2)
       .subscribe({
         next: (response: any) => {
-          if (this.amount < this.storageService.getAccount().amount) {
-            console.log(response);
-            this.ngOnInit();
-          }else{
-            this.errorMessage="Insufficient balance"
-          }
+          console.log(response);
+          this.ngOnInit();
         },
         error: (err) => console.log('error', err),
         complete: () => console.log('completed'),
       });
+    // } else {
+    //   this.errorMessage = 'Insufficient balance';
+    // }
+
     this.amount = 0;
   }
 
