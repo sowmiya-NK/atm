@@ -16,7 +16,9 @@ export class AccountComponent implements OnInit {
     name: '',
     userId: 0,
     balance: 0,
+    amount:0
   };
+  errorMessage:string='';
   amount: number = 0;
 
   constructor(
@@ -63,8 +65,12 @@ export class AccountComponent implements OnInit {
       .debit(this.amount, this.storageService.getAccount().userId, 2)
       .subscribe({
         next: (response: any) => {
-          console.log(response);
-          this.ngOnInit();
+          if (this.amount < this.storageService.getAccount().amount) {
+            console.log(response);
+            this.ngOnInit();
+          }else{
+            this.errorMessage="Insufficient balance"
+          }
         },
         error: (err) => console.log('error', err),
         complete: () => console.log('completed'),

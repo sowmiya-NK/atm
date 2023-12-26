@@ -3,5 +3,5 @@ export interface Account {
   name: string;
   pinnumber?: number;
   balance: number;
-  amount?: number;
+  amount: number;
 }

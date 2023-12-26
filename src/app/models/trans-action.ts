@@ -2,7 +2,7 @@ export interface TransAction {
     userId:number;
     amount:number;
     currentBalance:number;
-    date:Date;
+    createdAt:Date;
     transactionalType:any
     name:string;
 }

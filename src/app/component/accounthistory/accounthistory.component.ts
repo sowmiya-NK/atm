@@ -20,7 +20,7 @@ export class AccounthistoryComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.history=response,
-          console.log(response);
+          console.log('history',response);
         },
       });
   }
