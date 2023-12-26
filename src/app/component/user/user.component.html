@@ -2,7 +2,7 @@
   <form>
     <label class="mt-3">Enter PIN Number:</label><br>
     <input
-      class="mx-2 mt-2"
+      class="mx-2 mt-2 borde"
       type="password"
       placeholder="****"
       password
@@ -11,6 +11,7 @@
       name="pinnumber"
       pattern="[0-9]{4}$"
       #ModelNumber="ngModel"
+      style="border-radius: 10px; border: none;"
       [ngClass]="ModelNumber.invalid && ModelNumber.dirty ? 'is-invalid' : ''"
     />
     <div *ngIf="ModelNumber.invalid" class="invalid-feedback">please enter 4 digit pin number</div>

@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent {
   errorMessage: string = '';
-  pinnumber: number = 0;
+  pinnumber: number=0;
   constructor(private router: Router, private userService: UserService,private storageService:StorageService) {}
   submit() {
     console.log(this.pinnumber);
